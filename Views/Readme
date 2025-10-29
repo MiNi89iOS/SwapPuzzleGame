@@ -1,0 +1,111 @@
+Copyright (c) 2025 Miłosz Niedziela
+Licensed under the MIT License. See LICENSE file.
+
+DISCLAIMER: This software is for educational purposes only.
+The author is not responsible for any damages or incorrect results.
+
+# Swap Puzzle Game
+
+Prosta i przyjemna gra logiczna typu sliding puzzle na iOS. Podziel obraz na siatkę i ułóż go przesuwając kafelki, aby odtworzyć oryginał. Wybierz własny obraz, ustaw rozmiar siatki i korzystaj z podpowiedzi podglądu.
+
+## Funkcje
+
+- Tryb gry z licznikiem ruchów i czasu
+- Wybór siatki: od 3x3 do 8x8 (presety i konfiguracja własna)
+- Automatyczna sugestia siatki dopasowana do proporcji wybranego obrazu
+- Podpowiedź: miniatura oryginalnego obrazu (z możliwością powiększenia)
+- Import własnego obrazu z biblioteki zdjęć
+- Prosty, czytelny interfejs z menu, ustawieniami i powrotem do menu
+- Własne style przycisków (Main, Secondary, Destructive)
+
+## Wymagania
+
+- iOS 16 lub nowszy (zalecane)
+- Xcode 15 lub nowszy
+- Swift 5.9+
+- Uprawnienia do dostępu do biblioteki zdjęć (Photo Library)
+
+## Instalacja i uruchomienie
+
+1. Otwórz projekt w Xcode.
+2. Upewnij się, że w Assets znajduje się domyślny obraz o nazwie "puzzleImage" (jest używany jako startowy).
+3. Zbuduj i uruchom na symulatorze lub urządzeniu z iOS.
+
+Projekt nie wymaga zewnętrznych zależności (brak SPM/CocoaPods).
+
+## Jak grać
+
+1. W menu głównym wybierz Start Game, aby rozpocząć grę z aktualnymi ustawieniami.
+2. Przesuwaj kafelki sąsiadujące z pustym polem, aby ułożyć obraz.
+3. W prawym górnym rogu ekranu gry możesz zresetować układ (tasowanie).
+4. Włącz podpowiedź w Ustawieniach, aby zobaczyć miniaturę docelowego obrazu; stuknij ją, by powiększyć.
+5. Po ułożeniu zobaczysz komunikat z liczbą ruchów i czasem.
+
+## Ustawienia
+
+- Show Preview Hint: włącza/wyłącza widoczność podglądu miniatury.
+- Presets: szybki wybór siatki od 3x3 do 8x8.
+- Custom Grid: ręczny wybór liczby kolumn i wierszy (3–8).
+- Custom Image: wybór obrazu z biblioteki (otwierany przez PhotoPicker).
+- Suggest Grid: automatyczna sugestia siatki na podstawie proporcji wybranego obrazu. Mechanizm:
+  - Najpierw próba użycia “dokładnego” rozkładu na podstawie największego wspólnego dzielnika wymiarów obrazu w pikselach (gcd).
+  - Jeśli wynik nie mieści się w zakresie 3–8, wybierany jest najlepszy przybliżony układ (minimalna różnica proporcji siatki względem obrazu).
+
+Sugestia siatki uruchamia się automatycznie po zmianie obrazu.
+
+## Architektura i pliki
+
+- ContentView.swift
+  - Zarządza ekranami: menu, settings, game, exited.
+  - Przechowuje bieżące ustawienia (rows, cols, showHint, customImage).
+  - Funkcja suggestGrid() dobiera siatkę do proporcji obrazu.
+
+- SettingsView.swift
+  - UI ustawień: presety, siatka niestandardowa, włączanie podpowiedzi, wybór obrazu.
+  - Prezentuje PhotoPicker jako .sheet.
+  - Po zmianie obrazu wywołuje suggestGrid().
+
+- SlidingPuzzleView.swift
+  - Ekran gry, renderuje siatkę kafelków (LazyVGrid).
+  - Licznik ruchów, zegar (TimelineView), reset, powrót do menu.
+  - Obsługa podglądu miniatury i powiększenia (matchedGeometryEffect).
+
+- SlidingPuzzleViewModel.swift
+  - Logika gry: generowanie kafelków z obrazu, tasowanie, wykrywanie sąsiedztwa i zwycięstwa.
+  - Zlicza ruchy, czas i steruje alertem po ułożeniu.
+  - Wibracja i dźwięk przy zwycięstwie.
+
+- ButtonStyles.swift
+  - Style przycisków: MainButton, SecondaryButton, DestructiveButton.
+
+- UIImage+Normalized.swift
+  - Ekstensja naprawiająca orientację obrazów (normalizedImage).
+
+Uwaga: W SettingsView używany jest PhotoPicker(image:), który powinien być zdefiniowany w projekcie jako wrapper dla PHPickerViewController/PhotosPicker. Upewnij się, że plik ten istnieje i obsługuje zapis do @Binding UIImage?.
+
+## Uprawnienia i prywatność
+
+- Jeśli używasz PHPickerViewController (iOS 14+), nie wymaga on kluczy w Info.plist.
+- Jeśli korzystasz z UIImagePickerController z Photo Library, dodaj NSPhotoLibraryUsageDescription do Info.plist.
+
+## Logika gry w skrócie
+
+- Obraz jest normalizowany (orientacja .up).
+- Skaluje się go do proporcji siatki (na bazie szerokości), a następnie dzieli na kafelki.
+- Ostatni kafelek pozostaje pusty (dla klasycznej łamigłówki).
+- Kafle są tasowane przez serię legalnych ruchów sąsiadów pustego pola, co zapewnia rozwiązywalność.
+- Zwycięstwo wykrywane jest, gdy indeksy elementów pokrywają się z ich id.
+
+## Dźwięk i haptyka
+
+- Po ułożeniu: UINotificationFeedbackGenerator (success) + AudioServicesPlaySystemSound(1057).
+
+## Roadmap / pomysły na rozwój
+
+- Licznik najlepszych wyników (ruchy/czas) i tabela rekordów.
+
+## Znane ograniczenia
+
+- PhotoPicker musi być dostępny w projekcie (upewnij się, że komponent istnieje).
+- Domyślny obraz “puzzleImage” powinien być w Assets; w przeciwnym razie gra bez wyboru obrazu nie wystartuje.
+

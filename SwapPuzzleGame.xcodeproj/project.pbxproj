@@ -37,6 +37,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ContentView.swift,
+				LICENSE,
+				Readme,
 				SettingsView.swift,
 				SlidingPuzzleView.swift,
 			);
