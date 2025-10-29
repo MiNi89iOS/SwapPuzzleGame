@@ -13,7 +13,7 @@ struct ContentView: View {
     enum Screen { case menu, settings, game, exited }
     @State private var screen: Screen = .menu
     @State private var rows: Int = 4
-    @State private var cols: Int = 5
+    @State private var cols: Int = 4
     @State private var showHint: Bool = true
     @State private var customImage: UIImage? = UIImage(named: "puzzleImage")
     @State private var showImagePicker = false
