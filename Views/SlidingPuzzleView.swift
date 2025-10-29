@@ -24,20 +24,7 @@ struct SlidingPuzzleView: View {
                 let maxH = geo.size.height - 60
                 let side = min(maxW/CGFloat(cols), maxH/CGFloat(rows))
                 
-                HStack {
-                    if showHint, let hintImg = uiImage {
-                        Image(uiImage: hintImg)
-                            .resizable().scaledToFit()
-                            .frame(width: hintW)
-                            .padding(.leading)
-                            .matchedGeometryEffect(id: "preview", in: previewNS)
-                            .onTapGesture {
-                                withAnimation(.spring()) {
-                                    viewModel.previewExpanded.toggle()
-                                }
-                            }
-                    }
-                    
+                VStack {
                     VStack(spacing: 12) {
                         HStack {
                             Text("Moves: \(viewModel.moveCount)")
@@ -110,7 +97,21 @@ struct SlidingPuzzleView: View {
                                    alignment: .topTrailing)
                         }
                     }
+                    
+                    if showHint, let hintImg = uiImage {
+                        Image(uiImage: hintImg)
+                            .resizable().scaledToFit()
+                            .frame(width: hintW)
+                            .padding(.leading)
+                            .matchedGeometryEffect(id: "preview", in: previewNS)
+                            .onTapGesture {
+                                withAnimation(.spring()) {
+                                    viewModel.previewExpanded.toggle()
+                                }
+                            }
+                    }
                 }
+                .padding()
                 .onAppear {
                     viewModel.configure(rows: rows, cols: cols, image: uiImage)
                     viewModel.startGame()
@@ -135,4 +136,14 @@ struct SlidingPuzzleView: View {
             }
         }
     }
+}
+
+#Preview {
+    SlidingPuzzleView(
+        rows: 4,
+        cols: 4,
+        uiImage: UIImage(named: "puzzleImage"),
+        showHint: true,
+        onExit: {}
+    )
 }
