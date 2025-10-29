@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3DDC69F32EB214CF0089CD5D /* README in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC69F22EB214CF0089CD5D /* README */; };
+		3DDC69F52EB218020089CD5D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 3DDC69F42EB218020089CD5D /* LICENSE */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		3DDC69D72EB1FE280089CD5D /* Swap Puzzle Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swap Puzzle Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DDC69F22EB214CF0089CD5D /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		3DDC69F42EB218020089CD5D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -37,8 +44,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ContentView.swift,
-				LICENSE,
-				Readme,
 				SettingsView.swift,
 				SlidingPuzzleView.swift,
 			);
@@ -138,6 +143,8 @@
 				3DDC69B72EB1FA010089CD5D /* Models */,
 				3DDC69A92EB1F8770089CD5D /* SwapPuzzleGame */,
 				3DDC69D72EB1FE280089CD5D /* Swap Puzzle Game.app */,
+				3DDC69F22EB214CF0089CD5D /* README */,
+				3DDC69F42EB218020089CD5D /* LICENSE */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,6 +212,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DDC69F52EB218020089CD5D /* LICENSE in Resources */,
+				3DDC69F32EB214CF0089CD5D /* README in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
