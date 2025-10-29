@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Swap_Puzzle_GameApp: App {
+struct SwapPuzzleGameApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

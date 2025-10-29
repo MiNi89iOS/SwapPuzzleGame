@@ -7,13 +7,109 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		3DDC698D2EB1F4C60089CD5D /* Swap Puzzle Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swap Puzzle Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DDC69D72EB1FE280089CD5D /* Swap Puzzle Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swap Puzzle Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		3DDC69C22EB1FABE0089CD5D /* Exceptions for "Extensions" folder in "Swap Puzzle Game" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"UIImage+Normalized.swift",
+			);
+			target = 3DDC698C2EB1F4C60089CD5D /* Swap Puzzle Game */;
+		};
+		3DDC69C52EB1FADB0089CD5D /* Exceptions for "Components" folder in "Swap Puzzle Game" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ButtonStyles.swift,
+				PhotoPicker.swift,
+			);
+			target = 3DDC698C2EB1F4C60089CD5D /* Swap Puzzle Game */;
+		};
+		3DDC69CB2EB1FB160089CD5D /* Exceptions for "ViewModels" folder in "Swap Puzzle Game" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SlidingPuzzleViewModel.swift,
+			);
+			target = 3DDC698C2EB1F4C60089CD5D /* Swap Puzzle Game */;
+		};
+		3DDC69CE2EB1FB3C0089CD5D /* Exceptions for "Views" folder in "Swap Puzzle Game" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				ContentView.swift,
+				SettingsView.swift,
+				SlidingPuzzleView.swift,
+			);
+			target = 3DDC698C2EB1F4C60089CD5D /* Swap Puzzle Game */;
+		};
+		3DDC69D22EB1FDBD0089CD5D /* Exceptions for "Models" folder in "Swap Puzzle Game" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Tile.swift,
+			);
+			target = 3DDC698C2EB1F4C60089CD5D /* Swap Puzzle Game */;
+		};
+		3DDC69EF2EB1FE410089CD5D /* Exceptions for "Utilities" folder in "Swap Puzzle Game" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Math.swift,
+			);
+			target = 3DDC698C2EB1F4C60089CD5D /* Swap Puzzle Game */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		3DDC698F2EB1F4C60089CD5D /* Swap Puzzle Game */ = {
+		3DDC69A92EB1F8770089CD5D /* SwapPuzzleGame */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Swap Puzzle Game";
+			path = SwapPuzzleGame;
+			sourceTree = "<group>";
+		};
+		3DDC69B42EB1FA010089CD5D /* Components */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3DDC69C52EB1FADB0089CD5D /* Exceptions for "Components" folder in "Swap Puzzle Game" target */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		3DDC69B52EB1FA010089CD5D /* Utilities */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3DDC69EF2EB1FE410089CD5D /* Exceptions for "Utilities" folder in "Swap Puzzle Game" target */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3DDC69B62EB1FA010089CD5D /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3DDC69CE2EB1FB3C0089CD5D /* Exceptions for "Views" folder in "Swap Puzzle Game" target */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3DDC69B72EB1FA010089CD5D /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3DDC69D22EB1FDBD0089CD5D /* Exceptions for "Models" folder in "Swap Puzzle Game" target */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3DDC69B82EB1FA010089CD5D /* ViewModels */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3DDC69CB2EB1FB160089CD5D /* Exceptions for "ViewModels" folder in "Swap Puzzle Game" target */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3DDC69B92EB1FA010089CD5D /* Extensions */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3DDC69C22EB1FABE0089CD5D /* Exceptions for "Extensions" folder in "Swap Puzzle Game" target */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -32,17 +128,15 @@
 		3DDC69842EB1F4C60089CD5D = {
 			isa = PBXGroup;
 			children = (
-				3DDC698F2EB1F4C60089CD5D /* Swap Puzzle Game */,
-				3DDC698E2EB1F4C60089CD5D /* Products */,
+				3DDC69B52EB1FA010089CD5D /* Utilities */,
+				3DDC69B92EB1FA010089CD5D /* Extensions */,
+				3DDC69B42EB1FA010089CD5D /* Components */,
+				3DDC69B62EB1FA010089CD5D /* Views */,
+				3DDC69B82EB1FA010089CD5D /* ViewModels */,
+				3DDC69B72EB1FA010089CD5D /* Models */,
+				3DDC69A92EB1F8770089CD5D /* SwapPuzzleGame */,
+				3DDC69D72EB1FE280089CD5D /* Swap Puzzle Game.app */,
 			);
-			sourceTree = "<group>";
-		};
-		3DDC698E2EB1F4C60089CD5D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3DDC698D2EB1F4C60089CD5D /* Swap Puzzle Game.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -61,13 +155,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				3DDC698F2EB1F4C60089CD5D /* Swap Puzzle Game */,
+				3DDC69A92EB1F8770089CD5D /* SwapPuzzleGame */,
 			);
 			name = "Swap Puzzle Game";
 			packageProductDependencies = (
 			);
 			productName = "Swap Puzzle Game";
-			productReference = 3DDC698D2EB1F4C60089CD5D /* Swap Puzzle Game.app */;
+			productReference = 3DDC69D72EB1FE280089CD5D /* Swap Puzzle Game.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -85,7 +179,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3DDC69882EB1F4C60089CD5D /* Build configuration list for PBXProject "Swap Puzzle Game" */;
+			buildConfigurationList = 3DDC69882EB1F4C60089CD5D /* Build configuration list for PBXProject "SwapPuzzleGame" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -95,7 +189,7 @@
 			mainGroup = 3DDC69842EB1F4C60089CD5D;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 3DDC698E2EB1F4C60089CD5D /* Products */;
+			productRefGroup = 3DDC69842EB1F4C60089CD5D;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -313,7 +407,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3DDC69882EB1F4C60089CD5D /* Build configuration list for PBXProject "Swap Puzzle Game" */ = {
+		3DDC69882EB1F4C60089CD5D /* Build configuration list for PBXProject "SwapPuzzleGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3DDC69962EB1F4C80089CD5D /* Debug */,
