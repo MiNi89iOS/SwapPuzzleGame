@@ -109,3 +109,8 @@ Uwaga: W SettingsView używany jest PhotoPicker(image:), który powinien być zd
 - PhotoPicker musi być dostępny w projekcie (upewnij się, że komponent istnieje).
 - Domyślny obraz “puzzleImage” powinien być w Assets; w przeciwnym razie gra bez wyboru obrazu nie wystartuje.
 
+## Licencja i kwestie prawne
+
+- Kod źródłowy: MIT License — szczegóły w pliku [LICENSE](LICENSE).
+- Grafiki i assety: Custom License by Miłosz Niedziela — szczegóły w [LEGAL.md](LEGAL.md).
+- Biblioteki zewnętrzne: zachowują własne licencje (zob. ich repozytoria lub plik THIRD_PARTY_LICENSES.md, jeśli występuje).

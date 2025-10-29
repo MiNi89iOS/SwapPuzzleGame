@@ -12,6 +12,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D8C015E2EB2393600E51B4A /* LEGAL.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LEGAL.md; sourceTree = "<group>"; };
 		3DDC69D72EB1FE280089CD5D /* Swap Puzzle Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swap Puzzle Game.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DDC69F22EB214CF0089CD5D /* README */ = {isa = PBXFileReference; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		3DDC69F42EB218020089CD5D /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 				3DDC69D72EB1FE280089CD5D /* Swap Puzzle Game.app */,
 				3DDC69F22EB214CF0089CD5D /* README */,
 				3DDC69F42EB218020089CD5D /* LICENSE */,
+				3D8C015E2EB2393600E51B4A /* LEGAL.md */,
 			);
 			sourceTree = "<group>";
 		};
