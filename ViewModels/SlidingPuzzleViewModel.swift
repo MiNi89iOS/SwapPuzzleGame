@@ -114,6 +114,7 @@ final class SlidingPuzzleViewModel {
         }
         
         moveCount = 0
+        endDate = nil
         startDate = Date()
     }
     
@@ -149,7 +150,7 @@ final class SlidingPuzzleViewModel {
     func victory() {
         endDate = Date()
         UINotificationFeedbackGenerator().notificationOccurred(.success)
-        AudioServicesPlaySystemSound(1057)
+        AudioServicesPlaySystemSound(1016)
         showSolvedAlert = true
     }
 }
