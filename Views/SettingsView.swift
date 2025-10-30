@@ -12,7 +12,6 @@ struct SettingsView: View {
     @Binding var customImage: UIImage?
     @Binding var showImagePicker: Bool
     
-    var suggestGrid: () -> Void
     var onDone: () -> Void
     
     var body: some View {
@@ -69,7 +68,13 @@ struct SettingsView: View {
         }
         .padding()
         .onChange(of: customImage) {
-            suggestGrid()
+            guard let img = customImage else { return }
+            let suggestion = suggestedGrid(for: img,
+                                           allowed: 3...8,
+                                           defaultRows: rows,
+                                           defaultCols: cols)
+            rows = suggestion.rows
+            cols = suggestion.cols
         }
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
@@ -79,3 +84,4 @@ struct SettingsView: View {
         }
     }
 }
+

@@ -42,7 +42,6 @@ struct ContentView: View {
                 showHint: $showHint,
                 customImage: $customImage,
                 showImagePicker: $showImagePicker,
-                suggestGrid: suggestGrid,
                 onDone: { screen = .menu }
             )
             
@@ -63,36 +62,9 @@ struct ContentView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
-    
-    /// Exact-ratio or best-fit grid based on image proportions
-    private func suggestGrid() {
-        guard let img = customImage else { return }
-        let wpx = Int(img.size.width * img.scale)
-        let hpx = Int(img.size.height * img.scale)
-        let g = gcd(wpx, hpx)
-        let cExact = wpx / g
-        let rExact = hpx / g
-        if (3...8).contains(rExact) && (3...8).contains(cExact) {
-            rows = rExact
-            cols = cExact
-            return
-        }
-        let aspect = img.size.width / img.size.height
-        var best: (r: Int, c: Int, diff: CGFloat) = (rows, cols, .infinity)
-        for r in 3...8 {
-            for c in 3...8 {
-                let gridAspect = CGFloat(c) / CGFloat(r)
-                let d = abs(gridAspect - aspect)
-                if d < best.diff {
-                    best = (r, c, d)
-                }
-            }
-        }
-        rows = best.r
-        cols = best.c
-    }
 }
 
 #Preview {
     ContentView()
 }
+
