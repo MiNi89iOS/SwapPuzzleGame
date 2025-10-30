@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Observation
 
 typealias VoidCallback = () -> Void
 
@@ -17,12 +18,15 @@ struct ContentView: View {
     @State private var showHint: Bool = true
     @State private var customImage: UIImage? = UIImage(named: "puzzleImage")
     
+    // Wspólny ViewModel wstrzykiwany przez środowisko do ekranu gry
+    @State private var gameViewModel = SlidingPuzzleViewModel()
+    
     var body: some View {
         switch screen {
         case .menu:
             MenuView(
                 onStart: { screen = .game },
-                onSettings: { screen = .settings },
+                onSettings: { screen = .settings }
             )
             
         case .settings:
@@ -41,7 +45,7 @@ struct ContentView: View {
                 uiImage: customImage,
                 showHint: showHint
             ) { screen = .menu }
-            
+            .environment(gameViewModel)
         }
     }
 }

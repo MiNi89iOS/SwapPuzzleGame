@@ -5,24 +5,25 @@
 
 import SwiftUI
 import AudioToolbox
-import Combine
+import Observation
 
 @MainActor
-final class SlidingPuzzleViewModel: ObservableObject {
+@Observable
+final class SlidingPuzzleViewModel {
     // Konfiguracja
     private(set) var rows: Int = 4
     private(set) var cols: Int = 4
     private(set) var sourceImage: UIImage?
 
     // Stan gry
-    @Published var tiles: [Tile] = []
-    @Published var moveCount: Int = 0
-    @Published var startDate: Date = Date()
-    @Published var endDate: Date? = nil
-    @Published var showSolvedAlert: Bool = false
-    @Published var revealComplete: Bool = false
-    @Published var lastTileImage: Image? = nil
-    @Published var previewExpanded: Bool = false
+    var tiles: [Tile] = []
+    var moveCount: Int = 0
+    var startDate: Date = Date()
+    var endDate: Date? = nil
+    var showSolvedAlert: Bool = false
+    var revealComplete: Bool = false
+    var lastTileImage: Image? = nil
+    var previewExpanded: Bool = false
     
     var timeString: String {
         let end = endDate ?? Date()
@@ -146,3 +147,4 @@ final class SlidingPuzzleViewModel: ObservableObject {
         showSolvedAlert = true
     }
 }
+
