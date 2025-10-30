@@ -16,7 +16,9 @@ struct SettingsView: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            Text("Settings").font(.title2).padding(.bottom, 20)
+            Text("Settings")
+                .font(.title2)
+                .padding(.bottom, 20)
             Toggle("Show Preview Hint", isOn: $showHint)
                 .padding(.horizontal)
             
@@ -28,9 +30,7 @@ struct SettingsView: View {
                     }
                     .padding(.vertical, 6)
                     .padding(.horizontal, 12)
-                    .background((rows == n && cols == n)
-                                ? Color.blue
-                                : Color.gray.opacity(0.5))
+                    .background((rows == n && cols == n) ? Color.blue : Color.gray.opacity(0.5))
                     .foregroundColor(.white)
                     .cornerRadius(6)
                 }
@@ -59,7 +59,8 @@ struct SettingsView: View {
             Text("Custom Image")
             Button(action: { showImagePicker = true }) {
                 Text(customImage == nil ? "Choose Image" : "Change Image")
-                    .frame(width: 180).padding()
+                    .frame(width: 180)
+                    .padding()
             }
             .buttonStyle(SecondaryButton())
             .sheet(isPresented: $showImagePicker) {
