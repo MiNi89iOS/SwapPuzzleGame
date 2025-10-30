@@ -4,13 +4,16 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct SettingsView: View {
     @Binding var rows: Int
     @Binding var cols: Int
     @Binding var showHint: Bool
     @Binding var customImage: UIImage?
-    @Binding var showImagePicker: Bool
+    
+    // Lokalny stan wyboru PhotosPicker
+    @State private var pickerItem: PhotosPickerItem? = nil
     
     var onDone: () -> Void
     
@@ -57,17 +60,28 @@ struct SettingsView: View {
             .padding(.bottom, 16)
             
             Text("Custom Image")
-            Button(action: { showImagePicker = true }) {
+            PhotosPicker(selection: $pickerItem, matching: .images) {
                 Text(customImage == nil ? "Choose Image" : "Change Image")
                     .frame(width: 180)
                     .padding()
             }
             .buttonStyle(SecondaryButton())
-            .sheet(isPresented: $showImagePicker) {
-                PhotoPicker(image: $customImage)
-            }
         }
         .padding()
+        // Gdy użytkownik wybierze element w PhotosPicker
+        .onChange(of: pickerItem) { _, newItem in
+            guard let item = newItem else { return }
+            Task {
+                // Najprostsza i niezawodna ścieżka: pobierz dane i zbuduj UIImage
+                if let data = try? await item.loadTransferable(type: Data.self),
+                   let uiImg = UIImage(data: data) {
+                    customImage = uiImg
+                }
+                // Alternatywnie (iOS 17+): spróbuj bezpośrednio UIImage.self jeśli masz Transferable
+                // customImage = try? await item.loadTransferable(type: UIImage.self)
+            }
+        }
+        // Sugestia siatki
         .onChange(of: customImage) {
             guard let img = customImage else { return }
             let suggestion = suggestedGrid(for: img,

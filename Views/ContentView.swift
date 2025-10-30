@@ -16,7 +16,6 @@ struct ContentView: View {
     @State private var cols: Int = 4
     @State private var showHint: Bool = true
     @State private var customImage: UIImage? = UIImage(named: "puzzleImage")
-    @State private var showImagePicker = false
     
     var body: some View {
         switch screen {
@@ -32,7 +31,6 @@ struct ContentView: View {
                 cols: $cols,
                 showHint: $showHint,
                 customImage: $customImage,
-                showImagePicker: $showImagePicker,
                 onDone: { screen = .menu }
             )
             

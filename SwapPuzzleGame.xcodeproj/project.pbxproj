@@ -30,7 +30,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				ButtonStyles.swift,
-				PhotoPicker.swift,
 			);
 			target = 3DDC698C2EB1F4C60089CD5D /* Swap Puzzle Game */;
 		};
