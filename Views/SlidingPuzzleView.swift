@@ -38,11 +38,11 @@ struct SlidingPuzzleView: View {
                             VStack {
                                 HStack {
                                     Button("← Menu") { onExit() }
-                                        .padding(12)
-                                        .background(Color.black.opacity(0.5))
+                                        .padding(8)
+                                        .background(Color.gray.opacity(0.5))
                                         .foregroundColor(.white)
-                                        .cornerRadius(6)
-                                
+                                        .clipShape(RoundedRectangle(cornerRadius: 6))
+                                        
                                     Spacer()
                                     
                                     Button {
@@ -52,7 +52,7 @@ struct SlidingPuzzleView: View {
                                     } label: {
                                         Image(systemName: "arrow.clockwise")
                                             .padding(8)
-                                            .background(Color.black.opacity(0.5))
+                                            .background(Color.gray.opacity(0.5))
                                             .foregroundColor(.white)
                                             .clipShape(Circle())
                                     }
