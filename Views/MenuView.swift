@@ -8,7 +8,6 @@ import SwiftUI
 struct MenuView: View {
     var onStart: () -> Void
     var onSettings: () -> Void
-    var onExit: () -> Void
     
     var body: some View {
         VStack(spacing: 24) {
@@ -20,14 +19,12 @@ struct MenuView: View {
                 .buttonStyle(MainButton())
             Button("Settings") { onSettings() }
                 .buttonStyle(SecondaryButton())
-            Button("Exit") { onExit() }
-                .buttonStyle(DestructiveButton())
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
 #Preview {
-    MenuView(onStart: {}, onSettings: {}, onExit: {})
+    MenuView(onStart: {}, onSettings: {})
 }
 

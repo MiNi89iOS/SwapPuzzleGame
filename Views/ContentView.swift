@@ -10,7 +10,7 @@ import SwiftUI
 typealias VoidCallback = () -> Void
 
 struct ContentView: View {
-    enum Screen { case menu, settings, game, exited }
+    enum Screen { case menu, settings, game }
     @State private var screen: Screen = .menu
     @State private var rows: Int = 4
     @State private var cols: Int = 4
@@ -24,7 +24,6 @@ struct ContentView: View {
             MenuView(
                 onStart: { screen = .game },
                 onSettings: { screen = .settings },
-                onExit: { screen = .exited }
             )
             
         case .settings:
@@ -45,8 +44,6 @@ struct ContentView: View {
                 showHint: showHint
             ) { screen = .menu }
             
-        case .exited:
-            ExitView()
         }
     }
 }
