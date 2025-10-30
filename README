@@ -6,7 +6,7 @@ The author is not responsible for any damages or incorrect results.
 
 # Swap Puzzle Game
 
-Prosta i przyjemna gra logiczna typu sliding puzzle na iOS. Podziel obraz na siatkę i ułóż go przesuwając kafelki, aby odtworzyć oryginał. Wybierz własny obraz, ustaw rozmiar siatki i korzystaj z podpowiedzi podglądu.
+Prosta i przyjemna gra logiczna typu sliding puzzle na iOS/iPadOS. Podziel obraz na siatkę i ułóż go przesuwając kafelki, aby odtworzyć oryginał. Wybierz własny obraz, ustaw rozmiar siatki i korzystaj z podpowiedzi podglądu.
 
 ## Funkcje
 
@@ -14,22 +14,22 @@ Prosta i przyjemna gra logiczna typu sliding puzzle na iOS. Podziel obraz na sia
 - Wybór siatki: od 3x3 do 8x8 (presety i konfiguracja własna)
 - Automatyczna sugestia siatki dopasowana do proporcji wybranego obrazu
 - Podpowiedź: miniatura oryginalnego obrazu (z możliwością powiększenia)
-- Import własnego obrazu z biblioteki zdjęć
+- Import własnego obrazu z biblioteki zdjęć (PhotosPicker)
 - Prosty, czytelny interfejs z menu, ustawieniami i powrotem do menu
 - Własne style przycisków (Main, Secondary, Destructive)
 
 ## Wymagania
 
-- iOS 17 lub nowszy (wymagane — używamy Observation/@Observable i @Environment(T.self))
+- iOS/iPadOS 17 lub nowszy
 - Xcode 15 lub nowszy
 - Swift 5.9+
-- Uprawnienia do dostępu do biblioteki zdjęć (Photo Library)
+- Uprawnienia do dostępu do biblioteki zdjęć (Photo Library) — PhotosPicker nie wymaga wpisu w Info.plist
 
 ## Instalacja i uruchomienie
 
 1. Otwórz projekt w Xcode.
-2. Upewnij się, że w Assets znajduje się domyślny obraz o nazwie "puzzleImage" (jest używany jako startowy).
-3. Zbuduj i uruchom na symulatorze lub urządzeniu z iOS.
+2. Upewnij się, że w Assets.xcassets znajduje się domyślny obraz o nazwie dokładnie "puzzleImage" (jest używany jako startowy).
+3. Zbuduj i uruchom na symulatorze lub urządzeniu z iOS/iPadOS.
 
 Projekt nie wymaga zewnętrznych zależności (brak SPM/CocoaPods).
 
@@ -55,34 +55,33 @@ Sugestia siatki uruchamia się automatycznie po zmianie obrazu.
 
 ## Architektura i pliki
 
+- SwapPuzzleGameApp.swift
+  - Punkt wejścia aplikacji (SwiftUI App).
 - ContentView.swift
   - Zarządza ekranami: menu, settings, game.
   - Przechowuje bieżące ustawienia (rows, cols, showHint, customImage).
   - Tworzy instancję SlidingPuzzleViewModel i wstrzykuje ją do ekranu gry przez .environment(model).
-
+- MenuView.swift
+  - Ekran startowy z przyciskami Start Game / Settings.
 - SettingsView.swift
-  - UI ustawień: presety, siatka niestandardowa, włączanie podpowiedzi, wybór obrazu.
-  - Prezentuje PhotosPicker jako kontrolkę SwiftUI.
+  - UI ustawień: presety, siatka niestandardowa, włączanie podpowiedzi, wybór obrazu (PhotosPicker).
   - Po zmianie obrazu wywołuje suggestedGrid().
-
 - SlidingPuzzleView.swift
   - Ekran gry, renderuje siatkę kafelków (LazyVGrid).
   - Licznik ruchów, zegar (TimelineView), reset, powrót do menu.
   - Obsługa podglądu miniatury i powiększenia (matchedGeometryEffect).
   - Pobiera ViewModel z @Environment(SlidingPuzzleViewModel.self) i używa @Bindable dla wiązań (np. .alert).
-
 - SlidingPuzzleViewModel.swift
   - Logika gry: generowanie kafelków z obrazu, tasowanie, wykrywanie sąsiedztwa i zwycięstwa.
   - Oznaczony @Observable (Observation) i @MainActor; właściwości są zwykłymi var (bez @Published).
   - Zlicza ruchy, czas i steruje alertem po ułożeniu.
   - Wibracja i dźwięk przy zwycięstwie.
-
+- Tile.swift
+  - Model pojedynczego kafelka (id, opcjonalny obraz).
 - ButtonStyles.swift
   - Style przycisków: MainButton, SecondaryButton, DestructiveButton.
-
 - UIImage+Normalized.swift
   - Ekstensja naprawiająca orientację obrazów (normalizedImage).
-
 - Math.swift
   - gcd i suggestedGrid(for:) — logika doboru siatki.
 
@@ -91,8 +90,7 @@ Uwaga: W podglądach (#Preview) pamiętaj, aby wstrzyknąć model do SlidingPuzz
 
 ## Uprawnienia i prywatność
 
-- Jeśli używasz PhotosPicker (SwiftUI, PhotosUI), nie wymaga on kluczy w Info.plist.
-- Jeśli korzystasz z UIImagePickerController z Photo Library, dodaj NSPhotoLibraryUsageDescription do Info.plist.
+- Używany jest PhotosPicker (SwiftUI, PhotosUI) — nie wymaga on dodawania kluczy do Info.plist.
 
 ## Logika gry w skrócie
 
@@ -104,20 +102,26 @@ Uwaga: W podglądach (#Preview) pamiętaj, aby wstrzyknąć model do SlidingPuzz
 
 ## Dźwięk i haptyka
 
-- Po ułożeniu: UINotificationFeedbackGenerator (success) + AudioServicesPlaySystemSound(1057).
+- Po ułożeniu: UINotificationFeedbackGenerator (success) + AudioServicesPlaySystemSound(1016).
+
+## Troubleshooting
+
+- Brak assetu „puzzleImage”: dodaj obraz do Assets.xcassets o nazwie dokładnie „puzzleImage”, lub wybierz obraz w Settings przed startem gry.
+- Minimalna wersja systemu: upewnij się, że uruchamiasz na iOS/iPadOS 17+ (Observation/@Observable).
+- Czarny/odwrócony obraz: sprawdź, czy normalizedImage() jest dostępne (UIImage+Normalized.swift) i że obraz ma prawidłową orientację.
 
 ## Roadmap / pomysły na rozwój
 
 - Licznik najlepszych wyników (ruchy/czas) i tabela rekordów.
+- Testy jednostkowe i snapshoty UI (Swift Testing).
 
 ## Znane ograniczenia
 
-- Wymaga iOS 17+ (Observation/@Observable, @Environment(T.self)).
-- Domyślny obraz “puzzleImage” powinien być w Assets; w przeciwnym razie gra bez wyboru obrazu nie wystartuje.
+- Wymaga iOS/iPadOS 17+
+- Domyślny obraz „puzzleImage” powinien być w Assets; w przeciwnym razie gra bez wyboru obrazu nie wystartuje.
 
 ## Licencja i kwestie prawne
 
 - Kod źródłowy: MIT License — szczegóły w pliku [LICENSE](LICENSE).
 - Grafiki i assety: Custom License by Miłosz Niedziela — szczegóły w [LEGAL.md](LEGAL.md).
 - Biblioteki zewnętrzne: zachowują własne licencje (zob. ich repozytoria lub plik THIRD_PARTY_LICENSES.md, jeśli występuje).
-
