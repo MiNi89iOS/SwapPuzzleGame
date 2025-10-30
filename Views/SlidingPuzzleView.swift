@@ -42,12 +42,11 @@ struct SlidingPuzzleView: View {
                                         .background(Color.black.opacity(0.5))
                                         .foregroundColor(.white)
                                         .cornerRadius(6)
-                                        .frame(maxWidth: .infinity,
-                                               maxHeight: .infinity,
-                                               alignment: .topLeading)
+                                
                                     Spacer()
+                                    
                                     Button {
-                                        withAnimation(.spring()) {
+                                        withAnimation(.easeInOut) {
                                             viewModel.startGame()
                                         }
                                     } label: {

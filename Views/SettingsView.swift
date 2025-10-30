@@ -72,13 +72,11 @@ struct SettingsView: View {
         .onChange(of: pickerItem) { _, newItem in
             guard let item = newItem else { return }
             Task {
-                // Najprostsza i niezawodna ścieżka: pobierz dane i zbuduj UIImage
+                // Pobierz dane i zbuduj UIImage
                 if let data = try? await item.loadTransferable(type: Data.self),
                    let uiImg = UIImage(data: data) {
                     customImage = uiImg
                 }
-                // Alternatywnie (iOS 17+): spróbuj bezpośrednio UIImage.self jeśli masz Transferable
-                // customImage = try? await item.loadTransferable(type: UIImage.self)
             }
         }
         // Sugestia siatki
