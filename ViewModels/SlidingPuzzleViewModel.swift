@@ -95,7 +95,7 @@ final class SlidingPuzzleViewModel {
         tiles = arr
         
         // Tasowanie: przesunięcia sąsiadów pustego pola
-        for _ in 0..<(rows*cols*10) {
+        for _ in 0..<(rows*cols*100) {
             if let n = randomNeighbor(emptyIdx) {
                 tiles.swapAt(n, emptyIdx)
             }
