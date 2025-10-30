@@ -21,19 +21,11 @@ struct ContentView: View {
     var body: some View {
         switch screen {
         case .menu:
-            VStack(spacing: 24) {
-                Text("Swap\nThe Puzzle Game")
-                    .font(.largeTitle)
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom, 40)
-                Button("Start Game") { screen = .game }
-                    .buttonStyle(MainButton())
-                Button("Settings") { screen = .settings }
-                    .buttonStyle(SecondaryButton())
-                Button("Exit") { screen = .exited }
-                    .buttonStyle(DestructiveButton())
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            MenuView(
+                onStart: { screen = .game },
+                onSettings: { screen = .settings },
+                onExit: { screen = .exited }
+            )
             
         case .settings:
             SettingsView(
@@ -54,12 +46,7 @@ struct ContentView: View {
             ) { screen = .menu }
             
         case .exited:
-            VStack {
-                Spacer()
-                Text("Thanks for playing!").font(.title)
-                Spacer()
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            ExitView()
         }
     }
 }
