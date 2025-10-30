@@ -51,7 +51,7 @@ struct SlidingPuzzleView: View {
                                 
                                 Button {
                                     withAnimation(.easeInOut) {
-                                        viewModel.startGame()
+                                        viewModel.tilesShagging()
                                     }
                                 } label: {
                                     Image(systemName: "arrow.clockwise")

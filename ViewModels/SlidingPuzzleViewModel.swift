@@ -93,13 +93,7 @@ final class SlidingPuzzleViewModel {
             }
         }
         tiles = arr
-        
-        // Tasowanie: przesunięcia sąsiadów pustego pola
-        for _ in 0..<(rows*cols*100) {
-            if let n = randomNeighbor(emptyIdx) {
-                tiles.swapAt(n, emptyIdx)
-            }
-        }
+        tilesShagging()
         
         moveCount = 0
         startDate = Date()
@@ -109,6 +103,18 @@ final class SlidingPuzzleViewModel {
     
     var emptyIdx: Int {
         tiles.firstIndex { $0.image == nil } ?? 0
+    }
+    
+    func tilesShagging() {
+        // Tasowanie: przesunięcia sąsiadów pustego pola
+        for _ in 0..<(rows*cols*100) {
+            if let n = randomNeighbor(emptyIdx) {
+                tiles.swapAt(n, emptyIdx)
+            }
+        }
+        
+        moveCount = 0
+        startDate = Date()
     }
     
     func randomNeighbor(_ empty: Int) -> Int? {
