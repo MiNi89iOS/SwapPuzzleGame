@@ -71,7 +71,6 @@ struct SettingsView: View {
         .onChange(of: customImage) {
             guard let img = customImage else { return }
             let suggestion = suggestedGrid(for: img,
-                                           allowed: 3...8,
                                            defaultRows: rows,
                                            defaultCols: cols)
             rows = suggestion.rows

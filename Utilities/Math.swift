@@ -6,6 +6,7 @@
 import Foundation
 import UIKit
 
+// Największy wspólny dzielnik
 func gcd(_ a: Int, _ b: Int) -> Int {
     var x = a
     var y = b
@@ -36,7 +37,7 @@ func suggestedGrid(for image: UIImage,
     let g = gcd(max(wpx, 1), max(hpx, 1))
     let cExact = max(wpx / g, 1)
     let rExact = max(hpx / g, 1)
-    if allowed.contains(rExact), allowed.contains(cExact) {
+    if allowed.contains(rExact) && allowed.contains(cExact) {
         return (rExact, cExact)
     }
 
