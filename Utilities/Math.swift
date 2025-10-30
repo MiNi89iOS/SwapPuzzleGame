@@ -6,9 +6,12 @@
 import Foundation
 
 func gcd(_ a: Int, _ b: Int) -> Int {
-    var x = abs(a), y = abs(b)
+    var x = a
+    var y = b
     while y != 0 {
-        let t = x % y; x = y; y = t
+        let temp = y
+        y = x % y
+        x = temp
     }
     return x
 }

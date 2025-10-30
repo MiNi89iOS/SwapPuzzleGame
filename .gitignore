@@ -1,0 +1,44 @@
+# .gitignore for Swift/Xcode projects (SwiftUI compatible)
+
+# Xcode user settings
+xcuserdata/
+
+# Obj-C/Swift specific
+*.hmap
+
+# App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods
+# Uncomment if you want to ignore Pods directory and workspace
+# Pods/
+# *.xcworkspace
+
+# Carthage
+Carthage/Build/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# macOS system files
+.DS_Store
+
+# Xcode user state
+*.xcuserstate
+
+# Logs and profiling data
+*.log
+*.profraw
