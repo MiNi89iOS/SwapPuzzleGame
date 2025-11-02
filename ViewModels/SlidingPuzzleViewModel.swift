@@ -67,7 +67,6 @@ final class SlidingPuzzleViewModel {
         } else {
             lastTileImage = nil
         }
-        revealComplete = false
         previewExpanded = false
         
         var arr: [Tile] = []
@@ -114,6 +113,7 @@ final class SlidingPuzzleViewModel {
         }
         
         moveCount = 0
+        revealComplete = false
         endDate = nil
         startDate = Date()
     }
