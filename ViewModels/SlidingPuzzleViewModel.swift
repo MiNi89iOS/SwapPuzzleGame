@@ -135,6 +135,7 @@ final class SlidingPuzzleViewModel {
     }
     
     func tapTile(at idx: Int) {
+        guard !revealComplete else { return }
         guard isNeighbor(idx, emptyIdx) else { return }
         tiles.swapAt(idx, emptyIdx)
         moveCount += 1
