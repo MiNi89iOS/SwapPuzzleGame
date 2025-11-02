@@ -23,7 +23,7 @@ struct SlidingPuzzleView: View {
         
         ZStack {
             GeometryReader { geo in
-                let hintW: CGFloat = showHint ? 100 : 0
+                let hintW: CGFloat = 100
                 let maxW = geo.size.width - 50
                 let maxH = geo.size.height - 50 - hintW
                 let side = min(maxW/CGFloat(cols), maxH/CGFloat(rows))
