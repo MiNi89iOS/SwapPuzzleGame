@@ -66,6 +66,11 @@ struct SettingsView: View {
                     .padding()
             }
             .buttonStyle(SecondaryButton())
+            
+            Spacer()
+            
+            Button("Done") { onDone() }
+                .buttonStyle(MainButton())
         }
         .padding()
         // Gdy użytkownik wybierze element w PhotosPicker
@@ -87,12 +92,6 @@ struct SettingsView: View {
                                            defaultCols: cols)
             rows = suggestion.rows
             cols = suggestion.cols
-        }
-        .toolbar {
-            ToolbarItem(placement: .bottomBar) {
-                Button("Done") { onDone() }
-                    .buttonStyle(MainButton())
-            }
         }
     }
 }
